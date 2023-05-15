@@ -7,6 +7,11 @@ Output: [1,2]
 
 Input: nums = [1], k = 1
 Output: [1]
+
+Notes
+-----
+Learned about range(start, stop, step) - was used to: for i in range(stop:len(list))
+Pattern on using counts as an index
 """
 
 class Solution:
