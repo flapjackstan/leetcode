@@ -11,7 +11,14 @@ Output: [1]
 Notes
 -----
 Learned about range(start, stop, step) - was used to: for i in range(stop:len(list))
-Pattern on using counts as an index
+
+Pattern on using counts as an index (in general using index as something else)
+
+Also how to iterate through a list of lists
+
+how to start from the end of a list with
+    for i in range(start: len(list) -1, stop: 0, step: -1)
+    for i in range(start: last index / end of list, stop: index 0 / start of list, step: -1)
 """
 
 class Solution:
