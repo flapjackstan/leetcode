@@ -32,13 +32,17 @@ index -1 i can take product of everything left
 
 1. left temp array
 2. right temp array
-3. loop through nums, 
-
-2a. If you get that weird feeling that youre not getting to the solution ask the interviewer for thoughts
+3. loop through nums
 
 Here I realized that this method would be O(n2)
 
-2b. Whiteboard
+2a. If you get that weird feeling that youre not getting to the solution ask the interviewer for thoughts
+
+If i take a rolling product from left and right, for the index being evaluated i can multiply the
+left and right index of the rolling product to get the product of every thing up to that index
+
+2b. Whiteboard Example
+
 
 3: Program
 
@@ -53,12 +57,29 @@ That way when youre at the index being evaluated, the index to the left has
 the product of everything up to that index, and  
 """
 from typing import List
+import logging
+
+def setup_logging(debug=False):
+    level = logging.DEBUG if debug else logging.INFO
+    logging.basicConfig(level=level, format="%(levelname)s - %(message)s")
+
 
 class Solution:
     def product_except_self(self, nums: List[int]) -> List[int]:
+        logger = logging.getLogger(__name__)
+
+        logger.debug("Checkpoint 1")
+
+        # Your code here
+        logger.debug("Checkpoint 2")
+
+        # More code
+        logger.debug("Final checkpoint")
+
         return nums
 
 def main():
+    setup_logging(debug=True)
     nums = [1,2,3,4]
 
     solver = Solution()
