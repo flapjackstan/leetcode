@@ -68,27 +68,48 @@ class Solution:
     def product_except_self(self, nums: List[int]) -> List[int]:
         logger = logging.getLogger(__name__)
 
-        logger.debug("Checkpoint 1")
+        start_left_cummulative = [1] * len(nums)
+        rolling_prod = 1
+        for i in range(len(nums)):
+            logger.debug(f"index is: {i}")
+            rolling_prod = rolling_prod*nums[i]
+            start_left_cummulative[i] = rolling_prod
+            
+        start_right_cummulative = [1] * len(nums)
+        rolling_prod = 1
+        for i in range(len(nums) -1, -1, -1):
+            logger.debug(f"index is: {i}")
+            rolling_prod = rolling_prod*nums[i]
+            start_right_cummulative[i] = rolling_prod
+            
+        logger.debug(f"Nums:{nums}")
+        logger.debug(f"Left Cum Prod:{start_left_cummulative}")
+        logger.debug(f"Should be:{[1,2,6,24]}")
 
-        # Your code here
-        logger.debug("Checkpoint 2")
+        logger.debug(f"Right Cum Prod:{start_right_cummulative}")
+        logger.debug(f"Should be:{[24,24,12,4]}")
 
-        # More code
-        logger.debug("Final checkpoint")
+        output = [1] * len(nums)
+        for i in range(len(nums)):
+            logger.debug(f"index is: {i}")
+            left_prod = 1 if i == 0 else start_left_cummulative[i-1]
+            right_prod = 1 if i == len(nums) -1 else start_right_cummulative[i+1]
+            output[i] = left_prod * right_prod
 
-        return nums
+        return output
 
 def main():
-    setup_logging(debug=True)
+    setup_logging(debug=False)
+
     nums = [1,2,3,4]
+    expected = [24,12,8,6]
 
     solver = Solution()
     answer = solver.product_except_self(nums)
-
-    expected = [24,12,8,6]
     
     try:
         assert answer == expected
+        print("Solved!!!")
     except AssertionError:
         print(f"{answer} != {expected}")
 
